@@ -8,5 +8,9 @@
     <string name="statistics">Statistics</string>
     <string name="profile">Profile</string>
     <string name="please_select_a_tag">Please select a tag</string>
+    <string name="pinned">Pinned</string>
+    <string name="repositories">Repositories</string>
+    <string name="starred">Starred</string>
+    <string name="number_with_string">%1$s %2$s</string>
 
 </resources>
