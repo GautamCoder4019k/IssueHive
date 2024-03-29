@@ -28,9 +28,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.core.ui.components.AppTopBar
 import com.example.core.ui.components.IconWithText
 import com.example.findissues.R
 import com.example.findissues.models.home.User
+import com.example.findissues.ui.theme.FindIssueTheme
 import com.example.findissues.utils.Constants
 
 @Composable
@@ -43,13 +45,13 @@ fun HomeScreen(
     goToTwitter: (String) -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
-    Scaffold(topBar = { HomeAppBar() }, modifier = Modifier.fillMaxSize()) {
+    Scaffold(topBar = { AppTopBar(title = R.string.home) }, modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize()
                 .verticalScroll(scrollState)
-                .background(color = Color(0xFF0d1117))
+                .background(color = MaterialTheme.colorScheme.primary)
         ) {
             UserDetails(
                 user = user,
@@ -63,7 +65,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .height(18.dp)
                     .fillMaxWidth()
-                    .background(Color(0xFF000000))
+                    .background(MaterialTheme.colorScheme.secondary)
             )
             UserLinks(
                 onRepositoriesClick = onRepositoriesClick,
@@ -130,20 +132,22 @@ fun UserDetails(
             Column(modifier = Modifier.padding(top = 16.dp, end = 16.dp)) {
                 Text(
                     text = user.name,
-                    color = Color(0xFFb7b8ba),
+                    color = MaterialTheme.colorScheme.tertiary,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.headlineLarge,
                     modifier = Modifier.fillMaxWidth()
                 )
                 Text(
-                    text = user.login, color = Color(0xFFb7b8ba), fontSize = 19.sp
+                    text = user.login,
+                    color = MaterialTheme.colorScheme.tertiary,
+                    fontSize = 19.sp
                 )
             }
         }
 
         Text(
             text = user.bio,
-            color = Color(0xFFb7b8ba),
+            color = MaterialTheme.colorScheme.tertiary,
             fontSize = 20.sp,
             modifier = Modifier.padding(8.dp)
         )
@@ -198,5 +202,7 @@ fun UserDetails(
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(User())
+    FindIssueTheme {
+        HomeScreen(User())
+    }
 }
